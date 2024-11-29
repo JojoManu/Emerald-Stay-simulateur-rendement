@@ -1,9 +1,14 @@
   <div class="form-container">
     <mat-card class="card">
+
         <mat-card-header class="title">
           <mat-card-title class="text">Simulateur de rendement net de propriété immobilière</mat-card-title>
         </mat-card-header>
-        <form [formGroup]="applyForm" (submit)="submitForm()">
+
+        <!-- Formulaire pour la saisie des données utilisateur -->
+        <form [formGroup]="simulateurForm" (submit)="submitForm()">
+
+        <!-- Section de saisie visible uniquement lorsque les résultats ne sont pas encore calculés -->
         <mat-card-content class="content" *ngIf="!resultats[0]">
           <mat-form-field class="prix-achat">
             <mat-label class="label" for="prix-achat">Quel est le prix d'achat de votre bien immobilier ?</mat-label>
@@ -26,21 +31,28 @@
           </mat-form-field>
         </mat-card-content>
 
-        <mat-card-content *ngIf="resultats[0]">
-          <div >
-        <h2>Résultats</h2>
+        <!-- Section des résultats : s'affiche une fois les calculs terminés -->
+        <mat-card-content class="content-resultat" *ngIf="resultats[0]">
+          <h2>Résultats</h2>
+          <!-- Utitlisation de la pipe number qui permet de formater les nombres directement dans le html -->
+          <!-- number:'1.0-2' : 1 Minimum d'entiers avant la virgule, 0 Minimum de chiffres après la virgule, 2 Maximum de chiffres après la virgule -->
           <div>
-            <p> La premiere année le revenu net mensuel de votre bien sera de {{ resultats[0][0] }} € et son rendement sera de {{ resultats[0][1] }} %</p>
-            <p> La deuxième année le revenu net mensuel de votre bien sera de {{ resultats[1][0] }} € et son rendement sera de {{ resultats[1][1] }} %</p>
-            <p> La troisième année le revenu net mensuel de votre bien sera de {{ resultats[2][0] }} € et son rendement sera de {{ resultats[2][1] }} %</p>
+            <p> La premiere année le revenu net mensuel de votre bien sera de {{ resultats[0][0] | number:'1.0-2' }} € et son rendement sera de {{ resultats[0][1] | number:'1.0-2' }} %</p>
+            <mat-divider></mat-divider>
+            <p> La deuxième année le revenu net mensuel de votre bien sera de {{ resultats[1][0] | number:'1.0-2' }} € et son rendement sera de {{ resultats[1][1] | number:'1.0-2' }} %</p>
+            <mat-divider></mat-divider>
+            <p> La troisième année le revenu net mensuel de votre bien sera de {{ resultats[2][0] | number:'1.0-2' }} € et son rendement sera de {{ resultats[2][1] | number:'1.0-2' }} %</p>
           </div>
-        </div>
         </mat-card-content>
-        <div class="error-message" *ngIf="(applyForm.get('prixAchat')?.invalid && applyForm.get('prixAchat')?.touched)||(applyForm.get('loyerMensuel')?.invalid && applyForm.get('loyerMensuel')?.touched)||(applyForm.get('chargesLocativesAnnuelles')?.invalid && applyForm.get('chargesLocativesAnnuelles')?.touched)">
+
+        <!-- Message d'erreur : affiché si des champs obligatoires ne sont pas remplis -->
+        <div class="error-message" *ngIf="(simulateurForm.get('prixAchat')?.invalid && simulateurForm.get('prixAchat')?.touched)||(simulateurForm.get('loyerMensuel')?.invalid && simulateurForm.get('loyerMensuel')?.touched)||(simulateurForm.get('chargesLocativesAnnuelles')?.invalid && simulateurForm.get('chargesLocativesAnnuelles')?.touched)">
           Veuillez remplir tout les champs.
         </div>
+
+        <!-- Bouton désactivé si le formulaire est invalide -->
         <mat-card-actions class="card-actions" *ngIf="!resultats[0]">
-            <button mat-flat-button type="submit" class="button" [disabled]="applyForm.invalid">Lancer la simulation</button>
+            <button mat-flat-button type="submit" class="button" [disabled]="simulateurForm.invalid">Lancer la simulation</button>
         </mat-card-actions>
         
         </form>
