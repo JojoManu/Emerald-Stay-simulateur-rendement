@@ -1,0 +1,135 @@
+@media screen and (min-width: 600px) {
+  .form-container {
+      background-image: url("../../../../../public/img/form-bg.jpeg");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      min-height:max-content;
+
+      padding-top: var(--bs-gutter-y, 10rem);
+      padding-bottom: var(--bs-gutter-y, 9rem);
+      padding-right: var(--bs-gutter-x, .75rem);
+      padding-left: var(--bs-gutter-x, .75rem);
+      margin-right: auto;
+      margin-left: auto;
+  }
+
+  .card {
+    width: 1000px;
+    height: 600px;
+    place-self: center;
+    .title {
+      justify-content: center;
+      padding: 50px;
+      .text {
+        font-size: 1.7rem;
+        font-family: "Louize", serif;
+      }
+    }
+    .content {
+      display: grid;
+      .prix-achat {
+        grid-column: 1 / span 3;
+        grid-row: 1;
+        padding: 50px;
+        padding-bottom: 0;
+      }
+      .loyer-mensuel {
+        grid-column: 1;
+        grid-row: 3;
+        padding: 50px;
+      }
+      .space {
+        grid-column: 2;
+        grid-row: 3;
+      }
+      .charges-locatives-annuelles{
+        grid-column: 3;
+        grid-row: 3;
+        padding: 50px
+      }
+      
+    }
+    .button {
+      background-color: #00a062;
+    }
+    .card-actions {
+      justify-content: center;
+    }
+    .error-message {
+      justify-self: center;
+      color: rgb(173, 25, 25);
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .form-container {
+    background-image: url("../../../../../public/img/form-bg.jpeg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height:max-content;
+    padding-top: var(--bs-gutter-y, 10rem);
+    padding-bottom: var(--bs-gutter-y, 9rem);
+    padding-right: var(--bs-gutter-x, .75rem);
+    padding-left: var(--bs-gutter-x, .75rem);
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .card {
+    height: 600px;
+    place-self: center;
+    .title {
+      justify-content: center;
+      padding: 50px;
+      .text {
+        font-size: 20px;
+        font-family: "Louize", serif;
+        text-align: center;
+      }
+    }
+    .content {
+      display: grid;
+      .prix-achat {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 50px;
+        padding-bottom: 0;
+        padding-top: 0;
+      }
+      .loyer-mensuel {
+        grid-column: 1;
+        grid-row: 2;
+        padding: 50px;
+        padding-bottom: 0;
+      }
+      /* .space {
+        grid-column: 2;
+        grid-row: 3;
+      } */
+      .charges-locatives-annuelles{
+        grid-column: 1;
+        grid-row: 3;
+        padding: 50px;
+        padding-bottom: 0;
+      }
+      .label {
+        font-size: smaller;
+        text-wrap: auto;
+      }
+      
+    }
+    .button {
+      background-color: #00a062;
+    }
+    .card-actions {
+      justify-content: center;
+    }
+    .error-message {
+      justify-self: center;
+      color: rgb(173, 25, 25);
+    }
+  }
+}

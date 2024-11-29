@@ -1,0 +1,50 @@
+  <div class="form-container">
+    <mat-card class="card">
+        <mat-card-header class="title">
+          <mat-card-title class="text">Simulateur de rendement net de propriété immobilière</mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="applyForm" (submit)="submitForm()">
+        <mat-card-content class="content" *ngIf="!resultats[0]">
+          <mat-form-field class="prix-achat">
+            <mat-label class="label" for="prix-achat">Quel est le prix d'achat de votre bien immobilier ?</mat-label>
+            <input matInput id="prix-achat" type="number" formControlName="prixAchat">
+            <mat-icon matSuffix>euro_symbol</mat-icon>
+          </mat-form-field>          
+        
+          <mat-form-field class="loyer-mensuel">
+              <mat-label class="label" for="loyer-mensuel">Quel est le loyer mensuel ?</mat-label>
+              <input matInput id="loyer-mensuel" type="number" formControlName="loyerMensuel">
+              <mat-icon matSuffix>euro_symbol</mat-icon>
+          </mat-form-field>
+
+          <div class="space"></div>
+
+          <mat-form-field class="charges-locatives-annuelles">
+              <mat-label class="label" for="charges-locatives-annuelles">Quelles sont les charges locatives ?</mat-label>
+              <input matInput id="charges-locatives-annuelles" type="number" formControlName="chargesLocativesAnnuelles">
+              <mat-icon matSuffix>euro_symbol</mat-icon>
+          </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-content *ngIf="resultats[0]">
+          <div >
+        <h2>Résultats</h2>
+          <div>
+            <p> La premiere année le revenu net mensuel de votre bien sera de {{ resultats[0][0] }} € et son rendement sera de {{ resultats[0][1] }} %</p>
+            <p> La deuxième année le revenu net mensuel de votre bien sera de {{ resultats[1][0] }} € et son rendement sera de {{ resultats[1][1] }} %</p>
+            <p> La troisième année le revenu net mensuel de votre bien sera de {{ resultats[2][0] }} € et son rendement sera de {{ resultats[2][1] }} %</p>
+          </div>
+        </div>
+        </mat-card-content>
+        <div class="error-message" *ngIf="(applyForm.get('prixAchat')?.invalid && applyForm.get('prixAchat')?.touched)||(applyForm.get('loyerMensuel')?.invalid && applyForm.get('loyerMensuel')?.touched)||(applyForm.get('chargesLocativesAnnuelles')?.invalid && applyForm.get('chargesLocativesAnnuelles')?.touched)">
+          Veuillez remplir tout les champs.
+        </div>
+        <mat-card-actions class="card-actions" *ngIf="!resultats[0]">
+            <button mat-flat-button type="submit" class="button" [disabled]="applyForm.invalid">Lancer la simulation</button>
+        </mat-card-actions>
+        
+        </form>
+    </mat-card>
+    
+    
+</div>
